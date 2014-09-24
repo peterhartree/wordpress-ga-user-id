@@ -2,7 +2,7 @@
 /*
 Plugin Name: Google Analytics User ID Helper
 Plugin URI: http://web.peterhartree.co.uk/
-Description: Enables user ID tracking using Google Analytics.
+Description: Enables user ID tracking using Google Analytics. User ID value must be alphanumeric.
 Version: 0.1
 Author: Peter Hartree
 Author URI: http://web.peterhartree.co.uk/
@@ -36,13 +36,13 @@ function set_google_analytics_user_id() {
 
   // Has the user ID already been set in a session cookie?
   if(isset($_COOKIE['google_analytics_user_id'])):
-    $ga_user_id = (int) $_COOKIE['google_analytics_user_id'];
+    $ga_user_id = $_COOKIE['google_analytics_user_id'];
     $ga_user_id_safe = sanitize_google_analytics_user_id($ga_user_id);
   endif;
 
   // Is the user ID being passed via a querystring?
   if(isset($_GET['ga_user_id'])):
-    $ga_user_id = (int) $_GET['ga_user_id'];
+    $ga_user_id = $_GET['ga_user_id'];
     $ga_user_id_safe = sanitize_google_analytics_user_id($ga_user_id);
     setcookie('google_analytics_user_id', $ga_user_id, time() + (86400 * 7));
   endif;
@@ -53,7 +53,8 @@ function set_google_analytics_user_id() {
 }
 
 function sanitize_google_analytics_user_id($ga_user_id) {
-  if(is_int($ga_user_id) & $ga_user_id !== 0):
+
+  if(ctype_alnum($ga_user_id)):
    $ga_user_id_safe = 'user_' . $ga_user_id;
   endif;
 
