@@ -69,7 +69,10 @@ function script_google_analytics_user_id() {
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','". GOOGLE_ANALYTICS_ID . "', { 'userId': '" . GOOGLE_ANALYTICS_USER_ID . "'});ga('send','pageview');
+      ga('create','". GOOGLE_ANALYTICS_ID . "', { 'userId': '" . GOOGLE_ANALYTICS_USER_ID . "'});
+      ga('send','pageview', {
+        'dimension1':  '" . GOOGLE_ANALYTICS_USER_ID . "'
+      });
     </script>
   ";
 }
