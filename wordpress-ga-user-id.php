@@ -55,7 +55,7 @@ function set_google_analytics_user_id() {
 function sanitize_google_analytics_user_id($ga_user_id) {
 
   if(ctype_alnum($ga_user_id)):
-   $ga_user_id_safe = 'user_' . $ga_user_id;
+    $ga_user_id_safe = $ga_user_id;
   endif;
 
   return $ga_user_id_safe;
