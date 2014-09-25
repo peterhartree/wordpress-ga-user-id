@@ -32,6 +32,8 @@ function google_analytics_user_id() {
   endif;
 }
 
+add_action('init', 'google_analytics_user_id');
+
 function get_google_analytics_user_id() {
   $ga_user_id_safe = false;
 
