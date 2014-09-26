@@ -72,9 +72,11 @@ function script_google_analytics_user_id() {
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','". GOOGLE_ANALYTICS_ID . "', { 'userId': '" . $ga_user_id_safe . "'});
-      ga('send','pageview', {
-        'dimension1':  '" . $ga_user_id_safe . "'
+      ga('set', {
+        'dimension1': '" . $ga_user_id_safe . "',
+        'metric1': '" . $ga_user_id_safe . "'
       });
+      ga('send','pageview');
     </script>
   ";
 }
